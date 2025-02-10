@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="600" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+  <path d="M200 100 C 180 100, 160 110, 150 120 C 140 130, 130 150, 130 170 C 130 190, 140 210, 150 220 L 140 240 C 130 260, 120 280, 120 300 C 120 320, 130 340, 140 350 C 150 360, 170 370, 190 370 L 210 370 C 230 370, 250 360, 260 350 C 270 340, 280 320, 280 300 C 280 280, 270 260, 260 240 L 250 220 C 260 210, 270 190, 270 170 C 270 150, 260 130, 250 120 C 240 110, 220 100, 200 100 Z" 
+        fill="none" 
+        stroke="black" 
+        stroke-width="2"/>
+  <circle cx="180" cy="150" r="10" fill="black"/> <!-- Left eye -->
+  <circle cx="220" cy="150" r="10" fill="black"/> <!-- Right eye -->
+  <path d="M190 170 Q 200 180 210 170" fill="none" stroke="black" stroke-width="2"/> <!-- Beak -->
+  <path d="M150 320 L 170 340" stroke="black" stroke-width="4"/> <!-- Left foot line 1 -->
+  <path d="M160 320 L 180 340" stroke="black" stroke-width="4"/> <!-- Left foot line 2 -->
+  <path d="M230 320 L 210 340" stroke="black" stroke-width="4"/> <!-- Right foot line 1 -->
+  <path d="M240 320 L 220 340" stroke="black" stroke-width="4"/> <!-- Right foot line 2 -->
+  <path d="M200 100 C 210 90, 220 80, 220 70" fill="none" stroke="black" stroke-width="2"/> <!-- Top feather -->
+</svg>
