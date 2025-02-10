@@ -72,7 +72,7 @@ class _ColorToolsState extends State<ColorTools> {
         children: [
           // Two columns of colors
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,13 +85,14 @@ class _ColorToolsState extends State<ColorTools> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            width: 350,
+                            width: 330,
                             child: SliderTheme(
                               data: SliderTheme.of(context).copyWith(
                                 activeTrackColor: Colors.orange,
                                 showValueIndicator: ShowValueIndicator.onlyForDiscrete ,
-                                inactiveTrackColor: Colors.white.withOpacity(0.3),
+                                inactiveTrackColor: Colors.white.withOpacity(0.1),
                                 thumbColor: Colors.white,
+                                trackHeight: 30,
                                 thumbShape: SliderComponentShape.noOverlay ,
                                 overlayColor: Colors.white.withOpacity(0.1),
                                 valueIndicatorColor: Colors.white,
