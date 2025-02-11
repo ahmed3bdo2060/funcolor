@@ -1,4 +1,6 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:funcolor/resourse/assets_manager.dart';
 
 class BottomNavigation extends StatelessWidget {
@@ -28,9 +30,13 @@ class BottomNavigation extends StatelessWidget {
             child: Container(
                 height: 90.82,
                 width: 227,
-                child: insideGame==true?Image.asset(ImageAssets.backButton,
-                  height: 90.82,
-                  width: 227,):Image.asset(ImageAssets.logOut,
+                child: insideGame==true?SlideInRight(
+                  duration: Duration(milliseconds: 1500),
+                  from: 1050,
+                  child: Image.asset(ImageAssets.backButton,
+                    height: 90.82,
+                    width: 227,),
+                ):Image.asset(ImageAssets.logOut,
                   height: 90.82,
                   width: 227,)
             ),
@@ -59,9 +65,12 @@ class BottomNavigation extends StatelessWidget {
             child: Container(
                 height: 90.82,
                 width: 227,
-                child: Image.asset(ImageAssets.soundButton,
+                child: insideGame==true?Image.asset(ImageAssets.soundButton,
                     width: 227,
-                    height: 90.82)
+                    height: 90.82):SlideInLeft(child: Image.asset(ImageAssets.soundButton,
+                    width: 227,
+                    height: 90.82),duration: 1500.milliseconds,
+                from: 1000,)
             ),
           ),
         ),

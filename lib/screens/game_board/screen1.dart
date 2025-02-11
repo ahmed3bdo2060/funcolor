@@ -43,11 +43,7 @@ class GameBoard extends StatelessWidget {
               left: 80.51,
               right: 0,
               bottom: 0,
-              child: BottomNavigation(insideGame: false,onBackPressed:() {
-
-              },onSoundPressed: () {
-
-              },),
+              child: BottomNavigation(insideGame: false,),
             ),
           ],
         ),
