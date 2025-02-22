@@ -1,8 +1,10 @@
-import 'package:color_funland/core/components/gradient_box_border.dart';
-import 'package:color_funland/core/utils/app_colors.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter/widgets.dart';
+
+import '../utils/app_colors.dart';
+import 'gradient_box_border.dart';
 
 
 class GameStyles {

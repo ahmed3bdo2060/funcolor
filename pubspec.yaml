@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  confetti: ^0.7.0
 
   # Firebase
   firebase_core: ^2.24.2
@@ -44,10 +45,12 @@ dependencies:
   gradient_borders: ^1.0.1
   dio: ^5.8.0+1
   flutter_svg: ^2.0.10+1
+  flutter_screenutil: ^5.9.3
   flutter_colorpicker: ^1.0.1
   image: ^3.0.1
   flutter_animate: ^4.5.2
   animate_do: ^4.0.0
+  image_picker: ^1.0.7
 
 dev_dependencies:
   flutter_test:
@@ -73,8 +76,15 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/
+    - assets/images/auth_images/
+    - assets/images/game_board/
+    - assets/images/mypainting_images/
+    - assets/images/color_mixing_images/
+    - assets/images/color_match_images/
     - assets/images/
+    - assets/images/brush.png
+    - assets/icons/
+    - assets/fonts/
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
@@ -92,20 +102,18 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Buble
-      fonts:
-        - asset: assets/fonts/Magic Bubble.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-    - family: Minnie
-      fonts:
-       - asset: assets/fonts/Minnie.TTF
-    - family: Minnie1
-      fonts:
-        - asset: assets/fonts/Minnie.TTF
     - family: Gloock
       fonts:
         - asset: assets/fonts/Gloock-Regular.ttf
+
+    - family: MagicBubble
+      fonts:
+        - asset: assets/fonts/MagicBubble.ttf
+
+    - family: Minnie
+      fonts:
+        - asset: assets/fonts/Minnie.ttf
+
 
     - family: Lato
       fonts:

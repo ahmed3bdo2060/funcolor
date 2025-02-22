@@ -5,8 +5,11 @@ import 'package:funcolor/resourse/string_manager.dart';
 import 'package:funcolor/screens/game_board/screen1.dart';
 import 'package:funcolor/screens/my_painting/my_painting.dart';
 import 'package:funcolor/screens/my_painting/pages/animal_page.dart';
+import 'package:funcolor/win_screen.dart';
 
+import '../screens/color_mixing/color_mixing.dart';
 import '../screens/coloring_animal/paint_screen.dart';
+import '../testbrush.dart';
 
 
 class Routes{
@@ -20,6 +23,7 @@ class Routes{
   static const String gameBoard = "/gameBoard";
   static const String myPaintingPage = "/MyPaintingPage";
   static const String animalPage= "/animalPage";
+  static const String winPage= "/winPage";
   // static const String coloringScreen= "/coloringScreen";
   // static const String coloringPage= "/ColoringScreen2";
   static const String duckColor= "/duckColor";
@@ -32,6 +36,7 @@ class Routes{
   static const String beeColor= "/beeColor";
   static const String lion2Color= "/lion2Color";
   static const String kangarooColor= "/kangarooColor";
+  static const String paintScreen= "/PaintScreen";
 
 }
 // class RouteGenerator{
@@ -70,16 +75,20 @@ Map<String,Widget Function(BuildContext)> RoutesGenerator={
   Routes.gameBoard:(context) =>GameBoard(),
   Routes.myPaintingPage:(context) => MyPaintingPage(),
   Routes.animalPage:(context) => AnimalPage(),
+  // Routes.animalPage:(context) => AnimalPage(),
+  Routes.winPage:(context) => WinScreen(),
+  // Routes.paintScreen:(context) => ColorMixingGame(),
+  // "/colorMixingScreen":(context) => ColorMixingScreen(),
   // Routes.coloringScreen:(context) => ColoringScreen(),
   // Routes.coloringPage:(context) => ColoringScreen2(),
-  Routes.duckColor:(context) => PaintScreen(uncoloredImage: ImageAssets.duckUnColored,coloredImage: ImageAssets.duckColored),
-  Routes.bearColor:(context) => PaintScreen(uncoloredImage: ImageAssets.unColoredBear,coloredImage: ImageAssets.bearColored),
-  Routes.giraffeColor:(context) => PaintScreen(uncoloredImage: ImageAssets.unColoredGiraffe,coloredImage: ImageAssets.giraffeColored),
-  Routes.elephantColor:(context) => PaintScreen(uncoloredImage: ImageAssets.unColoredElephant2,coloredImage: ImageAssets.elephantColored),
-  Routes.lionColor:(context) => PaintScreen(uncoloredImage: ImageAssets.unColoredLion,coloredImage: ImageAssets.lionColored),
-  Routes.tigerColor:(context) => PaintScreen(uncoloredImage: ImageAssets.unColoredTiger,coloredImage: ImageAssets.tigerColored),
-  Routes.turtleColor:(context) => PaintScreen(uncoloredImage: ImageAssets.unColoredTurtle,coloredImage: ImageAssets.turtleColored),
-  Routes.beeColor:(context) => PaintScreen(uncoloredImage: ImageAssets.unColoredBee,coloredImage: ImageAssets.beeColored),
-  Routes.lion2Color:(context) => PaintScreen(uncoloredImage: ImageAssets.unColoredLion2,coloredImage: ImageAssets.lion2Colored),
-  Routes.kangarooColor:(context) => PaintScreen(uncoloredImage: ImageAssets.unColoredKangaroo,coloredImage: ImageAssets.kangarooColored),
+  Routes.duckColor:(context) => PaintScreen2(uncoloredImage: ImageAssets.duckUnColored,coloredImage: ImageAssets.duckColored),
+  Routes.bearColor:(context) => PaintScreen2(uncoloredImage: ImageAssets.unColoredBear,coloredImage: ImageAssets.bearColored),
+  Routes.giraffeColor:(context) => PaintScreen2(uncoloredImage: ImageAssets.unColoredGiraffe,coloredImage: ImageAssets.giraffeColored),
+  Routes.elephantColor:(context) => PaintScreen2(uncoloredImage: ImageAssets.unColoredElephant2,coloredImage: ImageAssets.elephantColored),
+  Routes.lionColor:(context) => PaintScreen2(uncoloredImage: ImageAssets.unColoredLion,coloredImage: ImageAssets.lionColored),
+  Routes.tigerColor:(context) => PaintScreen2(uncoloredImage: ImageAssets.unColoredTiger,coloredImage: ImageAssets.tigerColored),
+  Routes.turtleColor:(context) => PaintScreen2(uncoloredImage: ImageAssets.unColoredTurtle,coloredImage: ImageAssets.turtleColored),
+  Routes.beeColor:(context) => PaintScreen2(uncoloredImage: ImageAssets.unColoredBee,coloredImage: ImageAssets.beeColored),
+  Routes.lion2Color:(context) => PaintScreen2(uncoloredImage: ImageAssets.unColoredLion2,coloredImage: ImageAssets.lion2Colored),
+  Routes.kangarooColor:(context) => PaintScreen2(uncoloredImage: ImageAssets.unColoredKangaroo,coloredImage: ImageAssets.kangarooColored),
 };

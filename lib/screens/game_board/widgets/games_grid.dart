@@ -54,7 +54,9 @@ class Games extends StatelessWidget {
         context: context,
         image: ImageAssets.colorMixing,
         title: AppStrings.colorMixing,
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed("/colorMixingScreen");
+        },
       ),
       _buildGameItem(
         context: context,

@@ -1,10 +1,11 @@
-import 'package:color_funland/core/constants/app_images.dart';
-import 'package:color_funland/features/game_board/presentation/widgets/app_bar_row.dart';
-import 'package:color_funland/features/game_board/presentation/widgets/bottom_navigation.dart';
-import 'package:color_funland/features/game_board/presentation/widgets/games_grid.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:funcolor/core/constants/app_images.dart';
+import 'package:funcolor/features/game_board/presentation/widgets/app_bar_row.dart';
+import 'package:funcolor/features/game_board/presentation/widgets/games_grid.dart';
+import 'package:funcolor/features/game_board/presentation/widgets/two_items_bottom_navigation.dart';
 
 class GameBoardScreen extends StatelessWidget {
   const GameBoardScreen({super.key});
@@ -35,19 +36,18 @@ class GameBoardScreen extends StatelessWidget {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
+          appBar: AppBarRow(
+              gameGroup: "Activity Board",
+              inSideGame: false,
+                ),
           body: SafeArea(
             child: Column(
               children: [
-                AppBarRow(
-                  userName: 'Adam',
-                  gameGroup: "Activity Board",
-                  inSideGame: false,
-                ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 31.84.h),
                   child: const Games(),
                 ),
-                BottomNavigation(
+                TwoItemsBottomNavigation(
                   insideGame: false,
                 ),
               ],

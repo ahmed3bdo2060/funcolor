@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:color_funland/core/utils/screen_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:funcolor/core/utils/screen_utils.dart';
 
 class ResponsiveScaffold extends StatelessWidget {
   final Widget body;

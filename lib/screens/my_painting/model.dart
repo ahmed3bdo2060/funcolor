@@ -17,8 +17,8 @@ class GridItem {
 }
 final List<String> myPaintingPages =[
   Routes.animalPage,
-  Routes.gameBoard,
-  Routes.gameBoard,
+  Routes.paintScreen,
+  "/colorMixingScreen",
   Routes.myPaintingPage,
   Routes.myPaintingPage,
   Routes.myPaintingPage,
@@ -49,6 +49,16 @@ final List<GridItem>gridItems = [
   GridItem(title: AppStrings.paintMyNumbers, imageUrl: ImageAssets.paintMyNumbers,),
 
 ];
+//colorMixing List
+final List<GridItem> ColorMixingLevels=[
+  GridItem(imageUrl: ImageAssets.number1),
+  GridItem(imageUrl: ImageAssets.number2),
+  GridItem(imageUrl: ImageAssets.number3),
+  GridItem(imageUrl: ImageAssets.number4),
+  GridItem(imageUrl: ImageAssets.number5),
+  GridItem(imageUrl: ImageAssets.number6),
+];
+///////
 final List<GridItem>paintingAnimals = [
   GridItem( imageUrl: ImageAssets.duck, ),
   GridItem( imageUrl: ImageAssets.bear,),

@@ -1,7 +1,8 @@
-import 'package:color_funland/core/components/gradient_box_border.dart';
-import 'package:color_funland/core/utils/app_colors.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:funcolor/core/components/gradient_box_border.dart';
+import 'package:funcolor/core/utils/app_colors.dart';
 
 
 class ColorTools extends StatefulWidget {
@@ -21,12 +22,12 @@ class ColorTools extends StatefulWidget {
   ];
 
   const ColorTools({
-    super.key,
+    Key? key,
     required this.onColorSelected,
     required this.selectedColor,
     this.onStrokeWidthChanged,
     this.strokeWidth = 15.0,
-  });
+  }) : super(key: key);
 
   @override
   State<ColorTools> createState() => _ColorToolsState();
@@ -84,8 +85,8 @@ class _ColorToolsState extends State<ColorTools> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            width: 330.w,
+                          Container(
+                            width: 330,
                             child: SliderTheme(
                               data: SliderTheme.of(context).copyWith(
                                 activeTrackColor: Colors.orange,

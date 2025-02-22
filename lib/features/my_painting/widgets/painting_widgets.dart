@@ -1,23 +1,29 @@
-import 'package:color_funland/core/utils/text_styles.dart';
-import 'package:color_funland/features/my_painting/model.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:funcolor/core/utils/text_styles.dart';
+import 'package:funcolor/features/my_painting/model.dart';
 
 class PaintingWidget extends StatelessWidget {
   final List<GridItem> items;
   final int crossAxisCount;
-
   final List<String> pageGroup;
   final bool insidecategory;
   final bool insideanimals;
+  final bool isColorMixing;
+  final double? gridHeight;
+  final double childAspectRatio;
 
-  const PaintingWidget(
-      {super.key,
-      required this.items,
-      required this.crossAxisCount,
-      required this.insidecategory,
-      required this.pageGroup,
-      required this.insideanimals});
+  const PaintingWidget({
+    super.key,
+    required this.items,
+    required this.crossAxisCount,
+    required this.insidecategory,
+    required this.pageGroup,
+    required this.insideanimals,
+    this.gridHeight,  this.childAspectRatio = 1.0, required this.isColorMixing,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +38,16 @@ class PaintingWidget extends StatelessWidget {
                 )
               : Container(),
           SizedBox(
-            height: 499.h,
+            height: gridHeight ?? 499.h,
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount, childAspectRatio: 1 /.98,mainAxisSpacing: 0.w),
-              itemBuilder: (context, index) => _buildPaintingItem(
+                  crossAxisCount: crossAxisCount,
+                  childAspectRatio: childAspectRatio,
+                  mainAxisSpacing: 0.w),
+              itemBuilder: (context, index) => isColorMixing==true?_buildColorMixing(item: GridItem(imageUrl: items[index].imageUrl,
+                  onTap: () {
+                    Navigator.of(context).pushNamed(pageGroup[index]);
+                  },)) :_buildPaintingItem(
                 item: GridItem(
                   title: items[index].title,
                   imageUrl: items[index].imageUrl,
@@ -61,13 +72,17 @@ class PaintingWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(
+          item.isSvg == true ? SvgPicture.asset(
+            item.imageUrl,
+            width: item.imgWidth ?? 180.w,
+            height: item.imgHeight ?? 176.27.h,
+          ) : Image.asset(
             item.imageUrl,
             width: item.imgWidth ?? 180.w,
             height: item.imgHeight ?? 176.27.h,
           ),
           SizedBox(
-            height: 10.h,
+            height: 16.h,
           ),
           Text(
             item.title!,
@@ -77,6 +92,29 @@ class PaintingWidget extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
         ],
+      ),
+    );
+  }
+  Widget _buildColorMixing({
+    required GridItem item,
+  }) {
+    return InkWell(
+      onTap: item.onTap,
+      child:item.isSvg == true ? SvgPicture.asset(
+        item.imageUrl,
+        width: item.imgWidth ?? 180.w,
+        height: item.imgHeight ?? 176.27.h,
+      ) : Container(
+        height: item.imgHeight,
+        width: item.imgWidth,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(64.r)
+        ),
+        child: Image.asset(
+          item.imageUrl,
+          width: item.imgWidth ?? 180.w,
+          height: item.imgHeight ?? 176.27.h,
+        ),
       ),
     );
   }

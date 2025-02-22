@@ -1,192 +1,189 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:funcolor/resourse/assets_manager.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:funcolor/core/constants/app_icons.dart';
+import 'package:funcolor/core/constants/app_images.dart';
+import 'package:funcolor/core/utils/text_styles.dart';
+import 'package:funcolor/features/game_board/presentation/widgets/app_bar_row.dart';
+import 'package:funcolor/features/game_board/presentation/widgets/three_items_bottom_navigation.dart';
+import 'package:funcolor/win_screen.dart';
 
-class WinScreen2 extends StatefulWidget {
-  const WinScreen2({Key? key}) : super(key: key);
+class ColorMixingLevels3 extends StatefulWidget {
+  const ColorMixingLevels3({super.key});
 
   @override
-  _WinScreenState createState() => _WinScreenState();
+  State<ColorMixingLevels3> createState() => _ColorMixingSamplsState();
 }
 
-class _WinScreenState extends State<WinScreen2> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late List<Confetti> confetti;
-  final Random random = Random();
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2),
-    )..repeat();
-
-    // Create confetti with random properties
-    confetti = List.generate(500, (index) => Confetti(random));
-
-    // Start the animation loop
-    _startAnimation();
-  }
-
-  void _startAnimation() {
-    Future.delayed(const Duration(milliseconds: 2), () {
-      if (mounted) {
-        setState(() {
-          for (var particle in confetti) {
-            particle.update();
-          }
-        });
-        _startAnimation();
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+class _ColorMixingSamplsState extends State<ColorMixingLevels3> {
+  bool isCorrectColorPlaced = false;
+  bool win = false;
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color:Color(0xff2C005E).withOpacity(.20),
-      // Color(0xff9C008D).withOpacity(.30),
-      child: Stack(
-        children: [
-          // Confetti particles
-          ...confetti.map((particle) {
-            return Positioned(
-              left: particle.y,
-              top: particle.x,
-              // bottom: particle.y,
-              child: Transform.rotate(
-                angle:particle.angle,
-                child: ConfettiPiece(
-                  size: particle.size,
-                  color: particle.color,
-                ),
-              ),
-            );
-          }).toList(),
-
-          // Win message
-          Padding(
-            padding: const EdgeInsets.only(top: 250),
-            child: Center(
-              child: Container(
-                height: 210,
-                width: 800,
-                decoration: BoxDecoration(
-                    color: Color(0xff9C008D),
-                    borderRadius: BorderRadius.all(Radius.circular(82))
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 135),
-                  child: Row(
-                    children: [
-                      const Text(
-                        'Awsome',
-                        style: TextStyle(
-                          fontSize: 50,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 10,
-                              color: Colors.black38,
-                              offset: Offset(2, 2),
-                            ),
-                          ],
+    return Stack(
+      children:[ Scaffold(
+        appBar: AppBarRow(gameGroup: "Color Mixing", inSideGame: true,appBarIcon: AppIcons.colorMixingIcon,),
+        body: Padding(
+          padding: EdgeInsets.only(right: 52.w,left: 46.w),
+          child: Column(
+            children: [
+              Row(
+                  children: [
+                    Padding(
+                      padding:  EdgeInsets.only(left: 37.w ),
+                      child: InkWell(
+                        onTap: () {},
+                        child: SizedBox(
+                          width: 67.w,
+                          height: 67.h,
+                          child: SvgPicture.asset(
+                            AppIcons.help,
+                          ),
                         ),
                       ),
-                      const SizedBox(width: 64),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
+                    ),
+                    Expanded(child: Align(alignment: AlignmentDirectional.center,
+                        child: Text("Level 1",style: ts64Magic400,))),
+
+                  ]),
+              SizedBox(height: 27.74.h,),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 68.5.w),
+                child: Container(
+                  color: Color(0xffF6EEFA),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(AppImages.blueColorLevelForMix,height: 166.95.h, width: 180.w,),
+                      SizedBox(width: 70.38.w,),
+                      SvgPicture.asset(AppImages.plus,height: 71.74.h, width: 71.74.w,),
+                      SizedBox(width: 82.w,),
+                      SvgPicture.asset(AppImages.redColorLevelForMix,height: 157.77.h, width: 188.73.w,),
+                      SizedBox(width: 70.38,),
+                      SvgPicture.asset(AppImages.equal,width: 71.74,height: 33.86,),
+                      SizedBox(width: 70.38,),
+                      DragTarget<String>(
+                        builder: (context, candidateData, rejectedData) {
+                          return Container(
+                            height: 181.68,
+                            width: 180,
+                            child: Stack(
+                              children: [
+                                if (isCorrectColorPlaced)
+                                  Image.asset(
+                                    AppImages.mixedColored,
+                                    width: 180,
+                                    height: 181.68,
+                                    fit: BoxFit.contain,
+                                  )
+                                else
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage(AppImages.mixedColor),
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: SvgPicture.asset(
+                                        AppImages.questionMark,
+                                        width: 35,
+                                        height: 62,
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          );
                         },
-                        child: Container(
-                          width: 222,
-                          height: 86,
-                          child: Image.asset(ImageAssets.nextButton,fit:BoxFit.cover),
-                        ),
+                        onWillAccept: (data) => data == AppImages.colorLevelPurple && !isCorrectColorPlaced,
+                        onAccept: (data) {
+                          setState(() {
+                            isCorrectColorPlaced = true;
+                          });
+                          win = true;
+                        },
                       )
-                    ],
-                  ),
+                    ],),
                 ),
               ),
-            ),
+              SizedBox(height: 20.h,),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Draggable<String>(
+                    data: AppImages.colorLevelGreen,
+                    feedback: SvgPicture.asset(
+                      AppImages.colorLevelGreen,
+                      width: 100.w,
+                      height: 92.68.h,
+                    ),
+                    child: SvgPicture.asset(
+                      AppImages.colorLevelGreen,
+                      width: 100.w,
+                      height: 92.68.h,
+                    ),
+                    childWhenDragging: SvgPicture.asset(
+                      AppImages.colorLevelGreen,
+                      width: 100.w,
+                      height: 92.68.h,
+                      color: Colors.grey.withOpacity(0.3),
+                    ),
+                  ),
+                  SizedBox(width: 41.w,),
+                  SvgPicture.asset(AppImages.dvider,width: 9.w,height: 40.h,),
+                  SizedBox(width: 41.w,),
+                  Draggable<String>(
+                    data: AppImages.colorLevelPurple,
+                    feedback: SvgPicture.asset(
+                      AppImages.colorLevelPurple,
+                      width: 100.w,
+                      height: 93.25.h,
+                    ),
+                    child: SvgPicture.asset(
+                      AppImages.colorLevelPurple,
+                      width: 100.w,
+                      height: 93.25.h,
+                      color: isCorrectColorPlaced ? Colors.grey.withOpacity(0.3) : null,
+                    ),
+                    childWhenDragging: SvgPicture.asset(
+                      AppImages.colorLevelPurple,
+                      width: 100.w,
+                      height: 93.25.h,
+                      color: Colors.grey.withOpacity(0.3),
+                    ),
+                  ),
+                  SizedBox(width: 41.w,),
+                  SvgPicture.asset(AppImages.dvider,width: 9.w,height: 40.h,),
+                  SizedBox(width: 41.w,),
+                  Draggable<String>(
+                    data: AppImages.colorLevelYellow,
+                    feedback: SvgPicture.asset(
+                      AppImages.colorLevelYellow,
+                      width: 100.w,
+                      height: 92.68.h,
+                    ),
+                    child: SvgPicture.asset(
+                      AppImages.colorLevelYellow,
+                      width: 100.w,
+                      height: 92.68.h,
+                    ),
+                    childWhenDragging: SvgPicture.asset(
+                      AppImages.colorLevelYellow,
+                      width: 100.w,
+                      height: 92.68.h,
+                      color: Colors.grey.withOpacity(0.3),
+                    ),
+                  ),
+                ],
+              )
+            ],
           ),
-        ],
+        ),
+        bottomNavigationBar: ThreeItemsBottomNavigation(insideGame: true),
       ),
-    );
+        win==true?WinScreen():Container()
+    ]);
   }
-}
-
-class Confetti {
-  double x;
-  double y;
-  double velocityX;
-  double velocityY;
-  double angle;
-  double angularVelocity;
-  double size;
-  Color color;
-  final Random random;
-
-  Confetti(this.random)
-      : x = random.nextDouble() * 400,
-        y = -20,
-        velocityX = (random.nextDouble() - 0.5) * 8,
-        velocityY = random.nextDouble() * 4 + 2,
-        angle = random.nextDouble() * pi * 2,
-        angularVelocity = (random.nextDouble() - 0.5) * 0.3,
-        size = random.nextDouble() * 12 + 5,
-        color = Colors.primaries[random.nextInt(Colors.primaries.length)];
-
-  void update() {
-    x += velocityX;
-    y += velocityY;
-    angle += angularVelocity;
-
-    // Reset if particle goes off screen
-    if (y > 800) {
-      y = -20;
-      x = random.nextDouble() * 400;
-      velocityY = random.nextDouble() * 4 + 2;
-    }
-  }
-}
-
-class ConfettiPiece extends StatelessWidget {
-  final double size;
-  final Color color;
-
-  const ConfettiPiece({
-    Key? key,
-    required this.size,
-    required this.color,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size * 0.6,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(2),
-      ),
-    );
-  }
-}
-
-// Function to show the win screen
-void showWinScreen(BuildContext context) {
-  showDialog(
-    context: context,
-    barrierDismissible: false,
-    builder: (context) => const WinScreen2(),
-  );
 }

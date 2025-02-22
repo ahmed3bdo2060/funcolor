@@ -1,9 +1,9 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:color_funland/core/constants/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:funcolor/core/constants/app_icons.dart';
 
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation({

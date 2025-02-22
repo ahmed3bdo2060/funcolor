@@ -1,8 +1,7 @@
 import 'dart:ui';
-
-import 'package:color_funland/core/constants/app_images.dart';
-import 'package:color_funland/core/constants/app_strings.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:funcolor/core/constants/app_images.dart';
+import 'package:funcolor/core/constants/app_strings.dart';
 
 class GridItem {
   final String? title;
@@ -10,7 +9,7 @@ class GridItem {
   final VoidCallback? onTap;
   final double? imgWidth;
   final double? imgHeight;
-
+  final bool? isSvg;
 
   GridItem({
     this.title = "",
@@ -18,20 +17,24 @@ class GridItem {
     this.onTap,
     this.imgWidth,
     this.imgHeight,
+    this.isSvg = false,
   });
 }
 
-final List<String> myPaintingScreen = [
-'/mypaintingScreen',
-  "/home",
-  '/home',
-  '/paintingScreen',
-  '/paintingScreen',
-  '/paintingScreen',
-  '/paintingScreen',
-  '/paintingScreen',
-];
+final List<String> paintingScreen = [
+ '/duckColor',
+  '/bearColor',
+ '/giraffeColor',
+ '/elephantColor',
+  '/lionColor',
+  '/tigerColor',
+  '/turtleColor',
+  '/beeColor',
+ '/lion2Color',
+ '/kangarooColor',
 
+];
+///************* my painting samples **********/
 final List<String> myPaintingSamples = [
   '/myPaintingSamples',
   '/mypaintingScreen',
@@ -45,7 +48,7 @@ final List<String> myPaintingSamples = [
   "/lion2Color",
   "/kangarooColor",
 ];
-
+///*************** My Painting Screen ***************/
 final List<GridItem> gridItems = [
   GridItem(
     title: AppStrings.animals,
@@ -80,7 +83,6 @@ final List<GridItem> gridItems = [
     imageUrl: AppImages.paintByNumbersClosed,
   ),
 ];
-
 final List<GridItem> paintingAnimals = [
   GridItem(imageUrl: AppImages.duckFram ,imgWidth: 217.17.w,imgHeight:211.59.h ),
   GridItem(imageUrl: AppImages.bearFram,imgWidth: 217.17.w,imgHeight:211.59.h ),
@@ -93,3 +95,96 @@ final List<GridItem> paintingAnimals = [
   GridItem(imageUrl: AppImages.lionBabyFram,imgWidth: 217.17.w,imgHeight:211.59.h ),
   GridItem(imageUrl: AppImages.kangarooFram,imgWidth: 217.17.w,imgHeight:211.59.h ),
 ];
+///****************** Color Mixing Screen **************/
+final List<GridItem> colorMixingItem = [
+  GridItem(
+    imageUrl: AppImages.number1,
+    imgHeight:223.56.h,
+    imgWidth: 264.w
+  ),
+  GridItem(
+    // title: AppStrings.flowers,
+    imageUrl: AppImages.number2,
+      imgHeight:223.56.h,
+      imgWidth: 264.w
+  ),
+  GridItem(
+    // title: AppStrings.fishes,
+    imageUrl: AppImages.number3,
+      imgHeight:223.56.h,
+      imgWidth: 264.w
+  ),
+  GridItem(
+    // title: AppStrings.vehicles,
+    imageUrl: AppImages.number4,
+      imgHeight:223.56.h,
+      imgWidth: 264.w
+  ),
+  GridItem(
+    // title: AppStrings.dinosaur,
+    imageUrl: AppImages.number5,
+      imgHeight:223.56.h,
+      imgWidth: 264.w
+  ),
+  GridItem(
+    // title: AppStrings.characters,
+    imageUrl: AppImages.number6,
+      imgHeight:223.56.h,
+      imgWidth: 264.w
+  ),
+];
+final List<String> colorMixingSamples = [
+  '/colorMixingSampls',
+  '/mypaintingScreen',
+  "/bearColor",
+  "/giraffeColor",
+  "/elephantColor",
+  "/lionColor",
+  "/tigerColor",
+  "/turtleColor",
+  "/beeColor",
+  "/lion2Color",
+  "/kangarooColor",
+];
+
+///****************** Color match Screen **************/
+final List<GridItem> colorMatchItem = [
+  GridItem(
+    // title:"Shapes",
+      imageUrl: AppImages.colorMatchShapes,
+      imgHeight:392.h,
+      imgWidth: 264.w
+  ),
+  GridItem(
+    // title: "Food",
+      imageUrl: AppImages.colorMatchFoods,
+      imgHeight:392.h,
+      imgWidth: 264.w
+  ),
+  GridItem(
+    // title: "Animals",
+      imageUrl: AppImages.colorMatchAnimals,
+      imgHeight:392.h,
+      imgWidth: 264.w
+  ),
+  GridItem(
+    // title: "Numbers",
+      imageUrl: AppImages.colorMatchNumbers,
+      imgHeight:392.h,
+      imgWidth: 264.w
+  ),
+];
+final List<String> colorMatchSamples = [
+  '/colorMatchShapes',
+  '/colorMatchFoods',
+  "/colorMatchAnimals",
+  "/coloringScreen",
+  "/elephantColor",
+  "/lionColor",
+  "/tigerColor",
+  "/turtleColor",
+  "/beeColor",
+  "/lion2Color",
+  "/kangarooColor",
+];
+

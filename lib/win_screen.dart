@@ -1,19 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:funcolor/resourse/assets_manager.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: WinScreen(),
-    );
-  }
-}
 
 class WinScreen extends StatefulWidget {
   const WinScreen({Key? key}) : super(key: key);
@@ -26,6 +14,7 @@ class _WinScreenState extends State<WinScreen> with SingleTickerProviderStateMix
   late AnimationController _controller;
   late List<Confetti> confetti;
   final Random random = Random();
+  late Size screenSize;
 
   @override
   void initState() {
@@ -35,19 +24,41 @@ class _WinScreenState extends State<WinScreen> with SingleTickerProviderStateMix
       duration: const Duration(seconds: 2),
     )..repeat();
 
-    // Create confetti with random properties
-    confetti = List.generate(500, (index) => Confetti(random));
+    // We'll set the screen size in build
+    screenSize = Size.zero;
+    confetti = [];
 
     // Start the animation loop
     _startAnimation();
   }
 
+  void _initializeConfetti() {
+    if (screenSize == Size.zero) return;
+
+    // Create confetti with different starting positions
+    confetti = [
+      // Top confetti
+      ...List.generate(100, (index) => Confetti.fromTop(random, screenSize)),
+      // Bottom confetti
+      ...List.generate(100, (index) => Confetti.fromBottom(random, screenSize)),
+      // Left confetti
+      ...List.generate(100, (index) => Confetti.fromLeft(random, screenSize)),
+      // Right confetti
+      ...List.generate(100, (index) => Confetti.fromRight(random, screenSize)),
+      // Corner confetti
+      ...List.generate(100, (index) => Confetti.fromTopLeft(random, screenSize)),
+      ...List.generate(100, (index) => Confetti.fromTopRight(random, screenSize)),
+      ...List.generate(100, (index) => Confetti.fromBottomLeft(random, screenSize)),
+      ...List.generate(100, (index) => Confetti.fromBottomRight(random, screenSize)),
+    ];
+  }
+
   void _startAnimation() {
-    Future.delayed(const Duration(milliseconds: 2), () {
+    Future.delayed(const Duration(milliseconds: 5), () {
       if (mounted) {
         setState(() {
           for (var particle in confetti) {
-            particle.update();
+            particle.update(screenSize);
           }
         });
         _startAnimation();
@@ -63,16 +74,23 @@ class _WinScreenState extends State<WinScreen> with SingleTickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
+    // Get the screen size
+    screenSize = MediaQuery.of(context).size;
+    
+    // Initialize confetti if not already done
+    if (confetti.isEmpty) {
+      _initializeConfetti();
+    }
+
     return Material(
-      color:Color(0xff2C005E).withOpacity(.20),
-      // Color(0xff9C008D).withOpacity(.30),
+      color: Color(0xff2C005E).withOpacity(.20),
       child: Stack(
         children: [
           // Confetti particles
           ...confetti.map((particle) {
             return Positioned(
-              left: particle.y,
-              top: particle.x,
+              left: particle.x,
+              top: particle.y,
               child: Transform.rotate(
                 angle: particle.angle,
                 child: ConfettiPiece(
@@ -85,21 +103,26 @@ class _WinScreenState extends State<WinScreen> with SingleTickerProviderStateMix
 
           // Win message
           Padding(
-            padding: const EdgeInsets.only(top: 250),
+            padding:  EdgeInsets.only(top: 250.h),
             child: Center(
               child: Container(
-                height: 210,
-                width: 800,
+                height: 210.h,
+                width: 800.w,
                 decoration: BoxDecoration(
-                  color: Color(0xff9C008D),
-                  borderRadius: BorderRadius.all(Radius.circular(82))
+                    color: Color(0xff9C008D).withOpacity(.9),
+                    borderRadius: BorderRadius.all(Radius.circular(82.r)),
+                  boxShadow: [
+                    BoxShadow(
+                      blurStyle: BlurStyle.inner
+                    )
+                  ]
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 135),
+                  padding:  EdgeInsets.symmetric(horizontal: 135.h),
                   child: Row(
                     children: [
                       const Text(
-                        'Awsome',
+                        'Awesome',
                         style: TextStyle(
                           fontSize: 50,
                           fontWeight: FontWeight.bold,
@@ -148,25 +171,193 @@ class Confetti {
   final Random random;
 
   Confetti(this.random)
-      : x = random.nextDouble() * 400,
-        y = -20,
-        velocityX = (random.nextDouble() - 0.5) * 8,
-        velocityY = random.nextDouble() * 4 + 2,
-        angle = random.nextDouble() * pi * 2,
-        angularVelocity = (random.nextDouble() - 0.5) * 0.3,
-        size = random.nextDouble() * 12 + 5,
-        color = Colors.primaries[random.nextInt(Colors.primaries.length)];
+      : x = 0,
+        y = 0,
+        velocityX = 0,
+        velocityY = 0,
+        angle = 0,
+        angularVelocity = 0,
+        size = 0,
+        color = Colors.white {
+    _initialize();
+  }
 
-  void update() {
+  // Factory constructors for different starting positions
+  factory Confetti.fromTop(Random random, Size screenSize) {
+    return Confetti(random)
+      .._setPosition(
+        x: random.nextDouble() * screenSize.width,
+        y: -20,
+        velocityX: (random.nextDouble() - 0.5) * 8,
+        velocityY: random.nextDouble() * 4 + 2,
+      );
+  }
+
+  factory Confetti.fromBottom(Random random, Size screenSize) {
+    return Confetti(random)
+      .._setPosition(
+        x: random.nextDouble() * screenSize.width,
+        y: screenSize.height + 20,
+        velocityX: (random.nextDouble() - 0.5) * 8,
+        velocityY: -(random.nextDouble() * 4 + 2),
+      );
+  }
+
+  factory Confetti.fromLeft(Random random, Size screenSize) {
+    return Confetti(random)
+      .._setPosition(
+        x: -20,
+        y: random.nextDouble() * screenSize.height,
+        velocityX: random.nextDouble() * 4 + 2,
+        velocityY: (random.nextDouble() - 0.5) * 8,
+      );
+  }
+
+  factory Confetti.fromRight(Random random, Size screenSize) {
+    return Confetti(random)
+      .._setPosition(
+        x: screenSize.width + 20,
+        y: random.nextDouble() * screenSize.height,
+        velocityX: -(random.nextDouble() * 4 + 2),
+        velocityY: (random.nextDouble() - 0.5) * 8,
+      );
+  }
+
+  factory Confetti.fromTopLeft(Random random, Size screenSize) {
+    return Confetti(random)
+      .._setPosition(
+        x: -20,
+        y: -20,
+        velocityX: random.nextDouble() * 4 + 2,
+        velocityY: random.nextDouble() * 4 + 2,
+      );
+  }
+
+  factory Confetti.fromTopRight(Random random, Size screenSize) {
+    return Confetti(random)
+      .._setPosition(
+        x: screenSize.width + 20,
+        y: -20,
+        velocityX: -(random.nextDouble() * 4 + 2),
+        velocityY: random.nextDouble() * 4 + 2,
+      );
+  }
+
+  factory Confetti.fromBottomLeft(Random random, Size screenSize) {
+    return Confetti(random)
+      .._setPosition(
+        x: -20,
+        y: screenSize.height + 20,
+        velocityX: random.nextDouble() * 4 + 2,
+        velocityY: -(random.nextDouble() * 4 + 2),
+      );
+  }
+
+  factory Confetti.fromBottomRight(Random random, Size screenSize) {
+    return Confetti(random)
+      .._setPosition(
+        x: screenSize.width + 20,
+        y: screenSize.height + 20,
+        velocityX: -(random.nextDouble() * 4 + 2),
+        velocityY: -(random.nextDouble() * 4 + 2),
+      );
+  }
+
+  void _initialize() {
+    angle = random.nextDouble() * pi * 2;
+    angularVelocity = (random.nextDouble() - 0.5) * 0.3;
+    size = random.nextDouble() * 12 + 5;
+    color = Colors.primaries[random.nextInt(Colors.primaries.length)];
+  }
+
+  void _setPosition({
+    required double x,
+    required double y,
+    required double velocityX,
+    required double velocityY,
+  }) {
+    this.x = x;
+    this.y = y;
+    this.velocityX = velocityX;
+    this.velocityY = velocityY;
+  }
+
+  void update(Size screenSize) {
     x += velocityX;
     y += velocityY;
     angle += angularVelocity;
 
     // Reset if particle goes off screen
-    if (y > 800) {
-      y = -20;
-      x = random.nextDouble() * 400;
-      velocityY = random.nextDouble() * 4 + 2;
+    if (x < -50 || x > screenSize.width + 50 ||
+        y < -50 || y > screenSize.height + 50) {
+      // Randomly choose a new starting position
+      final position = random.nextInt(8);
+      switch (position) {
+        case 0:
+          _setPosition(
+            x: random.nextDouble() * screenSize.width,
+            y: -20,
+            velocityX: (random.nextDouble() - 0.5) * 8,
+            velocityY: random.nextDouble() * 4 + 2,
+          );
+          break;
+        case 1:
+          _setPosition(
+            x: random.nextDouble() * screenSize.width,
+            y: screenSize.height + 20,
+            velocityX: (random.nextDouble() - 0.5) * 8,
+            velocityY: -(random.nextDouble() * 4 + 2),
+          );
+          break;
+        case 2:
+          _setPosition(
+            x: -20,
+            y: random.nextDouble() * screenSize.height,
+            velocityX: random.nextDouble() * 4 + 2,
+            velocityY: (random.nextDouble() - 0.5) * 8,
+          );
+          break;
+        case 3:
+          _setPosition(
+            x: screenSize.width + 20,
+            y: random.nextDouble() * screenSize.height,
+            velocityX: -(random.nextDouble() * 4 + 2),
+            velocityY: (random.nextDouble() - 0.5) * 8,
+          );
+          break;
+        case 4:
+          _setPosition(
+            x: -20,
+            y: -20,
+            velocityX: random.nextDouble() * 4 + 2,
+            velocityY: random.nextDouble() * 4 + 2,
+          );
+          break;
+        case 5:
+          _setPosition(
+            x: screenSize.width + 20,
+            y: -20,
+            velocityX: -(random.nextDouble() * 4 + 2),
+            velocityY: random.nextDouble() * 4 + 2,
+          );
+          break;
+        case 6:
+          _setPosition(
+            x: -20,
+            y: screenSize.height + 20,
+            velocityX: random.nextDouble() * 4 + 2,
+            velocityY: -(random.nextDouble() * 4 + 2),
+          );
+          break;
+        case 7:
+          _setPosition(
+            x: screenSize.width + 20,
+            y: screenSize.height + 20,
+            velocityX: -(random.nextDouble() * 4 + 2),
+            velocityY: -(random.nextDouble() * 4 + 2),
+          );
+          break;
+      }
     }
   }
 }

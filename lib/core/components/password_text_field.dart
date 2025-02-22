@@ -1,7 +1,9 @@
-import 'package:color_funland/core/utils/app_colors.dart';
-import 'package:color_funland/core/utils/text_styles.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../utils/app_colors.dart';
+import '../utils/text_styles.dart';
 
 class PasswordField extends StatefulWidget {
   const PasswordField({super.key, this.validator, this.controller, this.textInputAction});

@@ -20,8 +20,8 @@ class PaintingWidget extends StatelessWidget {
       required this.crossAxisCount,
       required this.spacing,
       required this.leftImage,
-      this.hieght=300,
-      this.width=313,
+      this.hieght=358.65,
+      this.width=313.29,
         required this.insidecategory, required this.pageGroup, required this.insideanimals
       })
       : super(key: key);
@@ -35,7 +35,7 @@ class PaintingWidget extends StatelessWidget {
         children: [
           insidecategory==true?Padding(
             padding: const EdgeInsets.only(right: 32),
-            child: Image.asset(ImageAssets.paintingGirl, height: hieght, width: width),
+            child: Image.asset(leftImage, height: hieght, width: width),
           ):Container(),
           Expanded(
             child: Column(
@@ -80,7 +80,7 @@ class PaintingWidget extends StatelessWidget {
       Container(
         color: Colors.white,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
               child: Image.asset(

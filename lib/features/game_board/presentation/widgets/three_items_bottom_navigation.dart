@@ -1,8 +1,9 @@
-import 'package:color_funland/core/constants/app_icons.dart';
-import 'package:color_funland/features/game_board/presentation/widgets/two_items_bottom_navigation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:funcolor/core/constants/app_icons.dart';
+import 'package:funcolor/features/game_board/presentation/widgets/two_items_bottom_navigation.dart';
 
 class ThreeItemsBottomNavigation extends StatelessWidget {
   const ThreeItemsBottomNavigation({

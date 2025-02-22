@@ -1,11 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:funcolor/resourse/assets_manager.dart';
-import 'package:funcolor/resourse/routes_manager.dart';
-import 'package:funcolor/screens/game_board/screen1.dart';
-import 'package:funcolor/screens/my_painting/my_painting.dart';
-import 'package:funcolor/screens/my_painting/pages/animal_page.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:funcolor/core/constants/app_theme.dart';
+import 'core/constants/app_strings.dart';
+import 'core/constants/routes.dart';
+import 'features/game_board/presentation/pages/game_board_screen.dart';
 import 'modules/firebase/firebase_config.dart';
 
 
@@ -21,16 +20,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home:GameBoard(),
-      routes:RoutesGenerator
-    );
+    return ScreenUtilInit(
+        designSize:
+        const Size(1280, 800),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: AppStrings.appName,
+            theme: lightTheme,
+            routes: routes,
+          );
+        });
   }
 }

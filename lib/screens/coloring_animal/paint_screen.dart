@@ -5,79 +5,84 @@ import 'package:funcolor/screens/coloring_animal/widgets/paint_canvas.dart';
 import 'package:funcolor/screens/game_board/widgets/app_bar_row.dart';
 import 'package:funcolor/screens/game_board/widgets/bottom_navigation.dart';
 
+import '../../resourse/routes_manager.dart';
+import '../../win_screen.dart';
 import 'models/paint_state.dart';
 
-class PaintScreen extends StatefulWidget {
+class PaintScreen2 extends StatefulWidget {
   final String uncoloredImage;
   final String coloredImage;
   final String categoryName;
-  const PaintScreen({Key? key, required this.uncoloredImage, required this.coloredImage,  this.categoryName="Animal"}) : super(key: key);
+  const PaintScreen2({Key? key, required this.uncoloredImage, required this.coloredImage,  this.categoryName="Animal"}) : super(key: key);
 
   @override
-  State<PaintScreen> createState() => _PaintScreenState();
+  State<PaintScreen2> createState() => _PaintScreenState();
 }
 
-class _PaintScreenState extends State<PaintScreen> {
+class _PaintScreenState extends State<PaintScreen2> {
   final PaintState _paintState = PaintState();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Stack(
-          children:[
-            Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 60),
-            child: Column(
-              children: [
-                // App Bar
-                AppBarRow(
-                  userName: "adam",
-                  gameGroup: "Paintings",
-                  inSideGame: true,
-                  appBarIcon: ImageAssets.paintingIcon,
-                ),
-                Stack(
-                  children: [
-                    // Title
+    return Stack(
+      children:[ Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Stack(
+            children:[
+              Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 60),
+              child: Column(
+                children: [
+                  // App Bar
+                  AppBarRow(
+                    userName: "adam",
+                    gameGroup: "Paintings",
+                    inSideGame: true,
+                    appBarIcon: ImageAssets.paintingIcon,
+                  ),
+                  Stack(
+                    children: [
+                      // Title
 
 
-                    // Reference Image
-                     _ReferenceImage(widget.coloredImage),
+                      // Reference Image
+                       _ReferenceImage(widget.coloredImage),
 
-                    // Paint Canvas
-                    Center(
-                      child: PaintCanvas(paintState: _paintState, uncoloredImage: widget.uncoloredImage,),
-                    ),
-                    const _TitleWidget("Animal"),
-                  ],
-                ),
-              ],
-            ),
-          ),
-            // Color Tools
-            Positioned(
-              right: 0,
-              top: 140,
-              child: ColorTools(
-                selectedColor: _paintState.selectedColor,
-                onColorSelected: (color) => setState(() {
-                  _paintState.setColor(color);
-                }),
-                strokeWidth: _paintState.strokeWidth,
-                onStrokeWidthChanged: (width) => setState(() {
-                  _paintState.setStrokeWidth(width);
-                }),
+                      // Paint Canvas
+                      Center(
+                        child: PaintCanvas(paintState: _paintState, uncoloredImage: widget.uncoloredImage,),
+                      ),
+                      const _TitleWidget("Animal"),
+                    ],
+                  ),
+                ],
               ),
             ),
-        ]),
+              // Color Tools
+              Positioned(
+                right: 0,
+                top: 140,
+                child: ColorTools(
+                  selectedColor: _paintState.selectedColor,
+                  onColorSelected: (color) => setState(() {
+                    _paintState.setColor(color);
+                  }),
+                  strokeWidth: _paintState.strokeWidth,
+                  onStrokeWidthChanged: (width) => setState(() {
+                    _paintState.setStrokeWidth(width);
+                  }),
+                ),
+              ),
+          ]),
+        ),
+        bottomNavigationBar: BottomNavigation(
+          insideGame: true,
+          onBackPressed: () => Navigator.of(context).pop(),
+        ),
       ),
-      bottomNavigationBar: BottomNavigation(
-        insideGame: true,
-        onBackPressed: () => Navigator.of(context).pop(),
-      ),
-    );
+        WinScreen()
+    ]);
   }
 }
 

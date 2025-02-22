@@ -1,8 +1,9 @@
-import 'package:color_funland/core/constants/app_images.dart';
-import 'package:color_funland/core/constants/app_strings.dart';
-import 'package:color_funland/core/utils/text_styles.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:funcolor/core/constants/app_images.dart';
+import 'package:funcolor/core/constants/app_strings.dart';
+import 'package:funcolor/core/utils/text_styles.dart';
 
 class Games extends StatelessWidget {
   const Games({Key? key}) : super(key: key);
@@ -40,12 +41,15 @@ class Games extends StatelessWidget {
       _buildGameItem(
         image: AppImages.colorMixing,
         title: AppStrings.colorMixing,
-        onTap: () {},
+        onTap: () => Navigator.pushNamed(
+          context,
+          '/colorMixingScreen',
+        ),
       ),
       _buildGameItem(
         image: AppImages.matchColors,
         title: AppStrings.matchColors,
-        onTap: () {},
+        onTap: () => Navigator.pushNamed(context, "/colorMatchScreen"),
       ),
       _buildGameItem(
         image: AppImages.learningColors,

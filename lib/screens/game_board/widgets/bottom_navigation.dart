@@ -19,74 +19,56 @@ class BottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 63),
-          child: GestureDetector(
+    return Padding(
+      padding: const EdgeInsets.only(left: 80.51,right: 86.51),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
             onTap:onBackPressed,
-            child: Container(
-                height: 90.82,
-                width: 227,
-                child: insideGame==true?SlideInRight(
-                  duration: Duration(milliseconds: 1500),
-                  from: 1050,
-                  child: Image.asset(ImageAssets.backButton,
-                    height: 90.82,
-                    width: 227,),
-                ):Image.asset(ImageAssets.logOut,
-                  height: 90.82,
-                  width: 227,)
-            ),
+            child: insideGame==true?SlideInRight(
+              duration: Duration(milliseconds: 1500),
+              from: 1050,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 63),
+                child: Image.asset(ImageAssets.backButton,
+                  height: 81.7,
+                  width: 79.08,),
+              ),
+            ):Image.asset(ImageAssets.logOut,
+              height: 90.82,
+              width: 162.72,),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 60.78),
-          child: insideGame==true?GestureDetector(
+          insideGame==true?GestureDetector(
             onTap: () {
               Navigator.of(context).pushReplacementNamed("/gameBoard");
             },
-            child: Container(
-                height: 90.82,
-                width: 227,
-                child: Image.asset(ImageAssets.home,
-                    width: 227,
-                    height: 90.82)
+            child: Padding(
+              padding: const EdgeInsets.only(top: 636),
+              child: Image.asset(ImageAssets.home,
+                  width: 227,
+                  height: 90.82),
             ),
-          ):null,
-        ),
+          ):Container(),
 
-        Padding(
-          padding: const EdgeInsets.only(bottom: 63),
-          child: GestureDetector(
+          GestureDetector(
             onTap: onSoundPressed,
-            child: Container(
-                height: 90.82,
-                width: 227,
-                child: insideGame==true?Image.asset(ImageAssets.soundButton,
-                    width: 227,
-                    height: 90.82):SlideInLeft(child: Image.asset(ImageAssets.soundButton,
-                    width: 227,
-                    height: 90.82),duration: 1500.milliseconds,
-                from: 1000,)
-            ),
+            child: insideGame==true?Padding(
+              padding: const EdgeInsets.only(bottom: 63),
+              child: Image.asset(ImageAssets.soundButton,
+                height: 81.7,
+                width: 79.08,),
+            ):SlideInLeft(child: Padding(
+              padding: const EdgeInsets.only(bottom: 63),
+              child: Image.asset(ImageAssets.soundButton,
+                height: 81.7,
+                width: 79.08,),
+            ),duration: 1500.milliseconds,
+            from: 1000,),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
-
-// GestureDetector(
-// onTap: () {
-//
-// },
-// child: Container(
-// child: Image.asset(
-// ImageAssets.drawer,
-// width: 49,
-// height: 49,
-// ),)
-// ),

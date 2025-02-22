@@ -25,6 +25,9 @@ class ImageAssets{
   static const String paintMyNumbers = "$imagePath/paintmynumber.png";
   static const String locked = "$imagePath/locked 1.png";
   static const String help = "$imagePath/help.png";
+  static const String nextButton = "$imagePath/nextbutton.png";
+  static const String brush = "$imagePath/brush.png";
+  static const String colorMixingIcon = "$imagePath/colormixingicon.png";
   //animals pictures
   static const String duck = "$imagePath/duck.png";
   static const String bear = "$imagePath/bear.png";
@@ -59,4 +62,13 @@ class ImageAssets{
   static const String unColoredBee = "$imagePath/beeuncolored.png";
   static const String unColoredLion2 = "$imagePath/lion2uncolord.png";
   static const String unColoredKangaroo = "$imagePath/kangaroouncolored.png";
+  //colorMixing picture
+  static const String number1 = "$imagePath/number1.png";
+  static const String number2 = "$imagePath/number2.png";
+  static const String number3 = "$imagePath/number3.png";
+  static const String number4 = "$imagePath/number4.png";
+  static const String number5 = "$imagePath/number5.png";
+  static const String number6 = "$imagePath/number6.png";
+
+
 }
