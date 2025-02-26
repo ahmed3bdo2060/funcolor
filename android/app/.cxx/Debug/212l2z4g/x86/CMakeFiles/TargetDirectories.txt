@@ -1,0 +1,2 @@
+F:/funcolor/android/app/.cxx/Debug/212l2z4g/x86/CMakeFiles/edit_cache.dir
+F:/funcolor/android/app/.cxx/Debug/212l2z4g/x86/CMakeFiles/rebuild_cache.dir
