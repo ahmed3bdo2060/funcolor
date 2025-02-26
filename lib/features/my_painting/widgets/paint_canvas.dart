@@ -45,7 +45,6 @@ class _PaintCanvasState extends State<PaintCanvas> with SingleTickerProviderStat
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Stack(
-          fit: StackFit.expand,
           children: [
             // Background Layer
             Container(color: Colors.transparent),
@@ -69,17 +68,13 @@ class _PaintCanvasState extends State<PaintCanvas> with SingleTickerProviderStat
             ),
             
             // Duck Outline Layer
-           Center(
-              child: SizedBox(
-                // width: widget.width * 0.8, // Slightly smaller to ensure visibility
-                // height: widget.height * 0.8,
-                child: SvgPicture.asset(
-                  widget.uncoloredImage,
-                  key: widget.paintState.canvasKey,
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
+           SvgPicture.asset(
+             widget.uncoloredImage,
+             key: widget.paintState.canvasKey,
+             fit: BoxFit.contain,
+             height: widget.height,
+             width:  widget.width,
+           ),
             
             // Touch Handler
             Positioned.fill(

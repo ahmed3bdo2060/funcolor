@@ -27,40 +27,38 @@ class PaintingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: [
-          insideanimals == true
-              ? Text(
-                  'Animals',
-                  textAlign: TextAlign.center,
-                  style: ts64Magic400,
-                )
-              : Container(),
-          SizedBox(
-            height: gridHeight ?? 499.h,
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  childAspectRatio: childAspectRatio,
-                  mainAxisSpacing: 0.w),
-              itemBuilder: (context, index) => isColorMixing==true?_buildColorMixing(item: GridItem(imageUrl: items[index].imageUrl,
-                  onTap: () {
-                    Navigator.of(context).pushNamed(pageGroup[index]);
-                  },)) :_buildPaintingItem(
-                item: GridItem(
-                  title: items[index].title,
-                  imageUrl: items[index].imageUrl,
-                  onTap: () {
-                    Navigator.of(context).pushNamed(pageGroup[index]);
-                  },
-                ),
+    return Column(
+      children: [
+        insideanimals == true
+            ? Text(
+                'Animals',
+                textAlign: TextAlign.center,
+                style: ts64Magic400,
+              )
+            : Container(),
+        SizedBox(
+          height: gridHeight ?? 499.h,
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                childAspectRatio: childAspectRatio,
+                mainAxisSpacing: 0.w),
+            itemBuilder: (context, index) => isColorMixing==true?_buildColorMixing(item: GridItem(imageUrl: items[index].imageUrl,
+                onTap: () {
+                  Navigator.of(context).pushNamed(pageGroup[index]);
+                },)) :_buildPaintingItem(
+              item: GridItem(
+                title: items[index].title,
+                imageUrl: items[index].imageUrl,
+                onTap: () {
+                  Navigator.of(context).pushNamed(pageGroup[index]);
+                },
               ),
-              itemCount: items.length,
             ),
+            itemCount: items.length,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

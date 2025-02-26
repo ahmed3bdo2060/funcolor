@@ -51,14 +51,16 @@ class _ColorMixingScreenState extends State<ColorMixingScreen> {
                   SizedBox(
                     width: 32.w,
                   ),
-                  PaintingWidget(
-                    items: colorMixingItem,
-                    crossAxisCount: 3,
-                    gridHeight:496.h,
-                    pageGroup: colorMixingSamples,
-                    insidecategory: true,
-                    insideanimals: false,
-                    childAspectRatio: 264 / 223.56, isColorMixing: true,
+                  Expanded(
+                    child: PaintingWidget(
+                      items: colorMixingItem,
+                      crossAxisCount: 3,
+                      gridHeight:496.h,
+                      pageGroup: colorMixingSamples,
+                      insidecategory: true,
+                      insideanimals: false,
+                      childAspectRatio: 264 / 223.56, isColorMixing: true,
+                    ),
                   ),
                 ],
               ),

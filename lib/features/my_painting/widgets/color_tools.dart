@@ -19,7 +19,11 @@ class ColorTools extends StatefulWidget {
     Color(0xFF4CAF50), // Green
     Color(0xFFFF9800), // Orange
     Color(0xFF2196F3), // Blue
+    Colors.deepOrange,
+    Colors.lightBlueAccent,
+    Colors.cyan
   ];
+
 
   const ColorTools({
     Key? key,
@@ -45,9 +49,9 @@ class _ColorToolsState extends State<ColorTools> {
   @override
   Widget build(BuildContext context) {
     // Split colors into two columns
-    final int midPoint = (ColorTools.colors.length / 2).ceil();
-    final leftColors = ColorTools.colors.sublist(0, midPoint);
-    final rightColors = ColorTools.colors.sublist(midPoint);
+    // final int midPoint = (ColorTools.colors.length / 2).ceil();
+    final leftColors = ColorTools.colors;
+    // final rightColors = ColorTools.colors.sublist(midPoint);
 
     return Container(
       width: 300,
@@ -68,87 +72,69 @@ class _ColorToolsState extends State<ColorTools> {
           ),
         ],
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Two columns of colors
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                RotatedBox(
-                  quarterTurns: midPoint,
-                  child: Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 330,
-                            child: SliderTheme(
-                              data: SliderTheme.of(context).copyWith(
-                                activeTrackColor: Colors.orange,
-                                showValueIndicator: ShowValueIndicator.onlyForDiscrete ,
-                                inactiveTrackColor: Colors.white.withOpacity(0.1),
-                                thumbColor: Colors.white,
-                                trackHeight: 30,
-                                thumbShape: SliderComponentShape.noOverlay ,
-                                overlayColor: Colors.white.withOpacity(0.1),
-                                valueIndicatorColor: Colors.white,
-                                valueIndicatorTextStyle: const TextStyle(
-                                  color: Color(0xFF2A0B4F),
-                                ),
-                              ),
-                              child: Slider(
-                                value: _currentStrokeWidth,
-                                min: 5.0,
-                                max: 50.0,
-                                divisions: 45,
-                                label: _currentStrokeWidth.round().toString(),
-                                onChanged: (value) {
-                                  setState(() {
-                                    _currentStrokeWidth = value;
-                                  });
-                                  widget.onStrokeWidthChanged?.call(value);
-                                },
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+          RotatedBox(
+            quarterTurns: 3,
+            child: Container(
+              width: 380,
+              child: SliderTheme(
+                data: SliderTheme.of(context).copyWith(
+                  activeTrackColor: Colors.orange,
+                  showValueIndicator: ShowValueIndicator.onlyForDiscrete ,
+                  inactiveTrackColor: Colors.white.withOpacity(0.1),
+                  thumbColor: Colors.white,
+                  trackHeight: 45,
+                  thumbShape: SliderComponentShape.noOverlay ,
+                  overlayColor: Colors.white.withOpacity(0.1),
+                  valueIndicatorColor: Colors.white,
+                  valueIndicatorTextStyle: const TextStyle(
+                    color: Color(0xFF2A0B4F),
                   ),
                 ),
-                // Left column
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Column(
-                    children: leftColors.map((color) => _buildColorButton(color)).toList(),
-                  ),
+                child: Slider(
+                  value: _currentStrokeWidth,
+                  min: 5.0,
+                  max: 50.0,
+                  divisions: 45,
+                  label: _currentStrokeWidth.round().toString(),
+                  onChanged: (value) {
+                    setState(() {
+                      _currentStrokeWidth = value;
+                    });
+                    widget.onStrokeWidthChanged?.call(value);
+                  },
                 ),
-                // // Right column
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Column(
-                    children: rightColors.map((color) => _buildColorButton(color)).toList(),
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
-
-          const SizedBox(height: 16),
-
-          // Brush size slider
-          if (widget.onStrokeWidthChanged != null) ...[
-
-            const SizedBox(height: 16),
-          ],
-
-
-        ],
+          // Left column
+          Padding(
+            padding: const EdgeInsets.only(top: 0),
+            child:
+            Container(height: 350,width: 200,child: GridView
+              (gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:  2,mainAxisExtent:120,
+                childAspectRatio: 182.72/311.95,crossAxisSpacing: 12),children:
+            leftColors.map((color) => _buildColorButton(color)).toList(),
+            ))
+          //   SingleChildScrollView(
+          //     child: Column(
+          //       children: leftColors.map((color) => _buildColorButton(color)).toList(),
+          //     ),
+          //   ),
+          // ),
+          // Right column
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 20),
+          //   child: SingleChildScrollView(
+          //     child: Column(
+          //       children: rightColors.map((color) => _buildColorButton(color)).toList(),
+          //     ),
+          //   ),
+          // ),
+          )],
       ),
     );
   }
@@ -157,9 +143,7 @@ class _ColorToolsState extends State<ColorTools> {
     final isSelected = widget.selectedColor == color;
 
     return Container(
-      width: 89,
-      height: 89,
-      margin: const EdgeInsets.symmetric(vertical: 6),
+      // margin: const EdgeInsets.symmetric(vertical: 6),
       child: GestureDetector(
         onTap: () => widget.onColorSelected(color),
         child: Container(

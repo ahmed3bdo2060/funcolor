@@ -67,42 +67,35 @@ class _PaintScreenState extends State<PaintScreen> {
                   ),
                 ],
               ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Positioned(
-                      top: 0,
-                      left: 0,
-                      child: SvgPicture.asset(
-                        AppImages.coloredduck,
-                        height: 230.53.h,
-                      ),
-                    ),
-                    Center(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SvgPicture.asset(
+                    AppImages.coloredduck,
+                    height: 230.53.h,
+                  ),
+                  Expanded(
+                    child: Center(
                       child: PaintCanvas(
                         paintState: _paintState,
                         uncoloredImage: widget.uncoloredImage,
-                        width: 203.w,
-                        height: 424.h,
+                        width:400,
+                        height: 423.h,
                       ),
                     ),
-                    Positioned(
-                      right: 0,
-                      child: ColorTools(
-                        selectedColor: _paintState.selectedColor,
-                        onColorSelected: (color) => setState(() {
-                          _paintState.setColor(color);
-                        }),
-                        strokeWidth: _paintState.strokeWidth,
-                        onStrokeWidthChanged: (width) => setState(() {
-                          _paintState.setStrokeWidth(width);
-                        }),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                  ColorTools(
+                    selectedColor: _paintState.selectedColor,
+                    onColorSelected: (color) => setState(() {
+                      _paintState.setColor(color);
+                    }),
+                    strokeWidth: _paintState.strokeWidth,
+                    onStrokeWidthChanged: (width) => setState(() {
+                      _paintState.setStrokeWidth(width);
+                    }),
+                  ),
+                ],
               ),
             ],
           ),

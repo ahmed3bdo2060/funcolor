@@ -37,16 +37,14 @@ class _MyPaintingSamplesState extends State<MyPaintingSamples> {
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 48.09.w),
-                  child: Expanded(
-                    child: PaintingWidget(
-                      gridHeight: 400.h,
-                      items: paintingAnimals,
-                      crossAxisCount: 5,
-                      pageGroup: paintingScreen,
-                      insidecategory: false,
-                      insideanimals: true,
-                      childAspectRatio: 1 /.98, isColorMixing: false,
-                    ),
+                  child: PaintingWidget(
+                    gridHeight: 400.h,
+                    items: paintingAnimals,
+                    crossAxisCount: 5,
+                    pageGroup: paintingScreen,
+                    insidecategory: false,
+                    insideanimals: true,
+                    childAspectRatio: 1 /.98, isColorMixing: true,
                   ),
                 ),
                
