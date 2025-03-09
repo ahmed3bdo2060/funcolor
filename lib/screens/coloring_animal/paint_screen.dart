@@ -81,7 +81,7 @@ class _PaintScreenState extends State<PaintScreen2> {
           onBackPressed: () => Navigator.of(context).pop(),
         ),
       ),
-        WinScreen()
+        // WinScreen()
     ]);
   }
 }

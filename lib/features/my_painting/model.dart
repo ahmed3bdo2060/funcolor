@@ -96,6 +96,28 @@ final List<GridItem> paintingAnimals = [
   GridItem(imageUrl: AppImages.kangarooFram,imgWidth: 217.17.w,imgHeight:211.59.h ),
 ];
 ///****************** Color Mixing Screen **************/
+List<String> imageSample1 =[
+  AppImages.colorPurple,
+  AppImages.colorRed,
+  AppImages.colorGreen,
+];
+List<String> imageSample2 =[
+  AppImages.colorPurple,
+  AppImages.colorRed,
+  AppImages.colorGreen,
+  AppImages.colorYellow,
+  AppImages.colorOrange,
+];
+List<String> imageSample3 =[
+  AppImages.colorPurple,
+  AppImages.colorRed,
+  AppImages.colorGreen,
+  AppImages.colorYellow,
+  AppImages.colorOrange,
+  AppImages.colorBrown,
+  AppImages.colorBurple,
+  AppImages.colorPink,
+];
 final List<GridItem> colorMixingItem = [
   GridItem(
     imageUrl: AppImages.number1,
@@ -135,8 +157,8 @@ final List<GridItem> colorMixingItem = [
 ];
 final List<String> colorMixingSamples = [
   '/colorMixingSampls',
-  '/mypaintingScreen',
-  "/bearColor",
+  '/colorMixingSampls2',
+  "/colorMixingSampls3",
   "/giraffeColor",
   "/elephantColor",
   "/lionColor",
@@ -178,7 +200,7 @@ final List<String> colorMatchSamples = [
   '/colorMatchShapes',
   '/colorMatchFoods',
   "/colorMatchAnimals",
-  "/coloringScreen",
+  "/colorMatchAnimals2",
   "/elephantColor",
   "/lionColor",
   "/tigerColor",

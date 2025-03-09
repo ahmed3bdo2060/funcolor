@@ -93,11 +93,18 @@ class AppImages {
   ///********************* Color Mixing samples *********************/
   static const String colorPurple = "$_myColorMixingImagePath/colorpurple.svg";
   static const String colorRed = "$_myColorMixingImagePath/colorred.svg";
+  static const String colorYellow = "$_myColorMixingImagePath/coloryellow.svg";
+  static const String colorOrange = "$_myColorMixingImagePath/colororange.svg";
   static const String colorGreen = "$_myColorMixingImagePath/colorgreen.svg";
+  static const String colorBrown = "$_myColorMixingImagePath/colorbrown.svg";
+  static const String colorBurple = "$_myColorMixingImagePath/colorburple.svg";
+  static const String colorPink = "$_myColorMixingImagePath/colorpink.svg";
   static const String blueColorLevelForMix = "$_myColorMixingImagePath/bluecolorlevelformix.svg";
   static const String redColorLevelForMix = "$_myColorMixingImagePath/redcolorformix.svg";
   static const String yellowColorLevelForMix = "$_myColorMixingImagePath/yellowcolorformix.svg";
+  static const String greenColorLevelForMix = "$_myColorMixingImagePath/greencolorformix.svg";
   static const String mixedColor = "$_myColorMixingImagePath/mixedcolor1.png";
+  static const String mixedColor1 = "$_myColorMixingImagePath/mixedcolor.svg";
   static const String mixedColored = "$_myColorMixingImagePath/mixedcolored.png";
   static const String plus = "$_myColorMixingImagePath/plus.svg";
   static const String equal = "$_myColorMixingImagePath/equal.svg";
@@ -105,6 +112,8 @@ class AppImages {
   static const String colorLevelGreen = "$_myColorMixingImagePath/colorlevelgreen.svg";
   static const String colorLevelPurple = "$_myColorMixingImagePath/colorlevelpurple.svg";
   static const String colorLevelYellow = "$_myColorMixingImagePath/colorlevelyellow.svg";
+  static const String colorLevelOrange = "$_myColorMixingImagePath/colorlevelorange.svg";
+  static const String colorLevelBrown = "$_myColorMixingImagePath/colorlevelbrown.svg";
   static const String dvider = "$_myColorMixingImagePath/dvider.svg";
 
   ///**************************** Color Match *****************************/

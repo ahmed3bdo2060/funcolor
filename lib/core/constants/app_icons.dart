@@ -17,6 +17,7 @@ class AppIcons {
   static const String colorMixingIcon = "$_iconsPath/colormixingicon.svg";
   static const String colorMatchIcon = "$_iconsPath/colormatchicon.svg";
   static const String practiceBtn = "$_iconsPath/practice.svg";
+  static const String tryAgainButton = "$_iconsPath/tryagain.png";
 
 }
 

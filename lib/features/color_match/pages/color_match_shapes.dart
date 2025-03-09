@@ -6,6 +6,7 @@ import 'package:funcolor/core/constants/app_images.dart';
 import 'package:funcolor/core/utils/text_styles.dart';
 import 'package:funcolor/features/game_board/presentation/widgets/app_bar_row.dart';
 import 'package:funcolor/features/game_board/presentation/widgets/three_items_bottom_navigation.dart';
+import 'package:funcolor/win_screen.dart';
 
 class ColorMatchShapes extends StatefulWidget {
   const ColorMatchShapes({super.key});
@@ -24,6 +25,16 @@ class _ColorMixingSamplsState extends State<ColorMatchShapes> {
     'yellow': false,
     'red': false,
   };
+
+  void checkWinCondition() {
+    // Check if all colors are matched
+    bool allMatched = colorMatched.values.every((matched) => matched == true);
+    if (allMatched) {
+      showWinScreen(context,() {
+
+      },);
+    }
+  }
 
   // Map of colors to their corresponding containers
   final Map<Color, String> colorToContainer = {
@@ -138,6 +149,7 @@ class _ColorMixingSamplsState extends State<ColorMatchShapes> {
           setState(() {
             colorMatched[_getColorName(targetColor)] = true;
           });
+          checkWinCondition();
         },
       ),
     );

@@ -6,6 +6,7 @@ import 'package:funcolor/core/constants/app_images.dart';
 import 'package:funcolor/core/utils/text_styles.dart';
 import 'package:funcolor/features/game_board/presentation/widgets/app_bar_row.dart';
 import 'package:funcolor/features/game_board/presentation/widgets/three_items_bottom_navigation.dart';
+import 'package:funcolor/win_screen.dart';
 
 class ColorMatchFoods extends StatefulWidget {
   const ColorMatchFoods({super.key});
@@ -16,6 +17,19 @@ class ColorMatchFoods extends StatefulWidget {
 
 class _ColorMatchFoodsState extends State<ColorMatchFoods> {
   Set<String> usedColors = {};
+  Set<String> matchedFoods = {};
+
+  void showWinMessage() {
+   showWinScreen(context,() {
+
+   },);
+  }
+
+  void checkWinCondition() {
+    if (matchedFoods.length == 5) { // All 5 foods are matched
+      showWinMessage();
+    }
+  }
 
   Widget _buildDraggableColor(String colorImage) {
     final isUsed = usedColors.contains(colorImage);
@@ -27,20 +41,20 @@ class _ColorMatchFoodsState extends State<ColorMatchFoods> {
           colorImage,
           width: 128.w,
           height: 116.h,
-          color: isUsed ? Colors.grey.withOpacity(0.3) : getColorForImage(colorImage).withOpacity(0.8),
+          color: isUsed ? Colors.grey.withOpacity(0.5) : getColorForImage(colorImage).withOpacity(0.8),
         ),
       ),
       child: SvgPicture.asset(
         colorImage,
         width: 128.w,
         height: 116.h,
-        color: isUsed ? Colors.grey.withOpacity(0.3) : null,
+        color: isUsed ? Colors.grey.withOpacity(0.5) : null,
       ),
       childWhenDragging: SvgPicture.asset(
         colorImage,
         width: 128.w,
         height: 116.h,
-        color: Colors.grey.withOpacity(0.3),
+        color: Colors.grey.withOpacity(0.5),
       ),
     );
   }
@@ -200,12 +214,13 @@ class _ItemState extends State<_Item> {
                 setState(() {
                   areaColor = colorMap[colorImage];
                 });
-                // Add the color to used colors in parent widget
-                final parentState = context.findAncestorStateOfType<_ColorMatchFoodsState>();
-                if (parentState != null) {
-                  parentState.setState(() {
-                    parentState.usedColors.add(colorImage!);
+                final foodsState = context.findAncestorStateOfType<_ColorMatchFoodsState>();
+                if (foodsState != null) {
+                  foodsState.setState(() {
+                    foodsState.usedColors.add(colorImage!);
+                    foodsState.matchedFoods.add(widget.image);
                   });
+                  foodsState.checkWinCondition();
                 }
               },
             ),
