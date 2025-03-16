@@ -55,7 +55,7 @@ class _WinScreenState extends State<WinScreen> with SingleTickerProviderStateMix
   }
 
   void _startAnimation() {
-    Future.delayed(const Duration(milliseconds: 5), () {
+    Future.delayed(const Duration(milliseconds: 2), () {
       if (mounted) {
         setState(() {
           for (var particle in confetti) {
@@ -77,7 +77,7 @@ class _WinScreenState extends State<WinScreen> with SingleTickerProviderStateMix
   Widget build(BuildContext context) {
     // Get the screen size
     screenSize = MediaQuery.of(context).size;
-    
+
     // Initialize confetti if not already done
     if (confetti.isEmpty) {
       _initializeConfetti();

@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "394293143613",
-    "project_id": "ulearning-app-f10c0",
-    "storage_bucket": "ulearning-app-f10c0.firebasestorage.app"
+    "project_number": "227170513160",
+    "project_id": "funcolor-73c8f",
+    "storage_bucket": "funcolor-73c8f.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:394293143613:android:53fc8cc87b1a2b5588a254",
+        "mobilesdk_app_id": "1:227170513160:android:1fc29adda105c5e406fcbd",
         "android_client_info": {
           "package_name": "com.example.funcolor"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD0BPMrAFJoJr2pMjTB42iGeOrGAJosiCY"
+          "current_key": "AIzaSyCORg5ZLRfkGIPMm43ey0f4tlW73prgN-A"
         }
       ],
       "services": {

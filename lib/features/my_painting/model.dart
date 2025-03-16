@@ -103,20 +103,16 @@ List<String> imageSample1 =[
 ];
 List<String> imageSample2 =[
   AppImages.colorPurple,
-  AppImages.colorRed,
   AppImages.colorGreen,
-  AppImages.colorYellow,
   AppImages.colorOrange,
 ];
 List<String> imageSample3 =[
-  AppImages.colorPurple,
-  AppImages.colorRed,
+  AppImages.colorDarkOrange,
   AppImages.colorGreen,
-  AppImages.colorYellow,
+  AppImages.colorPurple,
   AppImages.colorOrange,
   AppImages.colorBrown,
-  AppImages.colorBurple,
-  AppImages.colorPink,
+  AppImages.colorBlueGreen,
 ];
 final List<GridItem> colorMixingItem = [
   GridItem(
@@ -200,7 +196,7 @@ final List<String> colorMatchSamples = [
   '/colorMatchShapes',
   '/colorMatchFoods',
   "/colorMatchAnimals",
-  "/colorMatchAnimals2",
+  "/DrawingApp",
   "/elephantColor",
   "/lionColor",
   "/tigerColor",

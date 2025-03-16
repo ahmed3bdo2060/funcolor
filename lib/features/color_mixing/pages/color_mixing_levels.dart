@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:funcolor/core/constants/app_icons.dart';
@@ -8,15 +9,15 @@ import 'package:funcolor/features/game_board/presentation/widgets/app_bar_row.da
 import 'package:funcolor/features/game_board/presentation/widgets/three_items_bottom_navigation.dart';
 import 'package:funcolor/win_screen.dart';
 
-class ColorMixingLevels2 extends StatefulWidget {
-  const ColorMixingLevels2({super.key, required this.firstColor,
+class ColorMixingLevels1 extends StatefulWidget {
+  const ColorMixingLevels1({super.key, required this.firstColor,
     required this.secondColor,
     required this.resultColor,
     this.onAccept,
     required this.imageColor,
     required this.chosseImageColor1,
     required this.chosseImageColor2,
-    required this.chosseImageColor3});
+    required this.chosseImageColor3, required this.levelNumber});
   final Color firstColor;
   final Color secondColor;
   final Color resultColor;
@@ -24,14 +25,15 @@ class ColorMixingLevels2 extends StatefulWidget {
   final String chosseImageColor1;
   final String chosseImageColor2;
   final String chosseImageColor3;
+  final String levelNumber;
 
   final void Function(String)? onAccept;
 
   @override
-  State<ColorMixingLevels2> createState() => _ColorMixingSamplsState();
+  State<ColorMixingLevels1> createState() => _ColorMixingSamplsState();
 }
 
-class _ColorMixingSamplsState extends State<ColorMixingLevels2> {
+class _ColorMixingSamplsState extends State<ColorMixingLevels1> {
   bool isCorrectColorPlaced = false;
 
 
@@ -59,7 +61,7 @@ class _ColorMixingSamplsState extends State<ColorMixingLevels2> {
                     ),
                   ),
                   Expanded(child: Align(alignment: AlignmentDirectional.center,
-                      child: Text("Level 1",style: ts64Magic400,))),
+                      child: Text(widget.levelNumber,style: ts64Magic400,))),
 
                 ]),
             SizedBox(height: 27.74.h,),
@@ -121,14 +123,29 @@ class _ColorMixingSamplsState extends State<ColorMixingLevels2> {
                         setState(() {
                           isCorrectColorPlaced = true;
                         });
+                        //level 1
                         if(widget.firstColor==Color(0xff325EDA)&&widget.secondColor ==Color(0xffE80D15))
                         Future.delayed(Duration(seconds: 1),() =>  Navigator.pushNamed(context, "/colorMixingLevels1-2"),);
                         else if(widget.firstColor==Color(0xff325EDA)&&widget.secondColor ==Color(0xffF6CA43))
                           Future.delayed(Duration(seconds: 1),() => Navigator.pushNamed(context, "/colorMixingLevels1-3"),);
                         else if(widget.firstColor==Color(0xffEA0606)&&widget.secondColor ==Color(0xffF6CA43))
-                          Future.delayed(Duration(seconds: 1),() => Navigator.pushNamed(context, "/colorMixingLevels1-4"),);
-                        else if(widget.firstColor==Color(0xffEA0606)&&widget.secondColor ==Color(0xff368727))
-                          Future.delayed(Duration(milliseconds: 20),() => showWinScreen(context,() => Navigator.pushNamed(context, "/colorMixingScreen"),),);
+                        //   Future.delayed(Duration(seconds: 1),() => Navigator.pushNamed(context, "/colorMixingLevels1-4"),);
+                        // else if(widget.firstColor==Color(0xffEA0606)&&widget.secondColor ==Color(0xff368727))
+                         showWinScreen(context,() => Navigator.pushNamed(context, "/colorMixingScreen"),);
+                        //level 2
+                        else if(widget.firstColor==Color(0xff77398A)&&widget.secondColor ==Color(0xffE80D15))
+                          Future.delayed(Duration(seconds: 1),() =>  Navigator.pushNamed(context, "/colorMixingLevels2-2"),);
+                        else if(widget.firstColor==Color(0xff019A00)&&widget.secondColor ==Color(0xff0051D4))
+                          Future.delayed(Duration(seconds: 1),() => Navigator.pushNamed(context, "/colorMixingLevels3-2"),);
+                        else if(widget.firstColor==Color(0xffFF7F00)&&widget.secondColor ==Color(0xffF6CA43))
+                          showWinScreen(context,() => Navigator.pushNamed(context, "/colorMixingScreen"),);
+                        //level 3
+                        else if(widget.firstColor==Color(0xffDB1D00)&&widget.secondColor ==Color(0xffF66F00))
+                          Future.delayed(Duration(seconds: 1),() =>  Navigator.pushNamed(context, "/colorMixingLevels2-3"),);
+                        else if(widget.firstColor==Color(0xffFDED00)&&widget.secondColor ==Color(0xff4E8D4B))
+                          Future.delayed(Duration(seconds: 1),() => Navigator.pushNamed(context, "/colorMixingLevels3-3"),);
+                        else if(widget.firstColor==Color(0xff002AFF)&&widget.secondColor ==Color(0xff553245))
+                          showWinScreen(context,() => Navigator.pushNamed(context, "/colorMixingScreen"),);
                       },
                     )
                   ],),
@@ -149,7 +166,10 @@ class _ColorMixingSamplsState extends State<ColorMixingLevels2> {
                     widget.chosseImageColor1,
                     width: 100.w,
                     height: 92.68.h,
-                    color: isCorrectColorPlaced&&widget.firstColor==Color(0xff325EDA)&&widget.secondColor==Color(0xffF6CA43)? Colors.grey.withOpacity(0.3):null,
+                    color: isCorrectColorPlaced
+                    &&widget.imageColor==widget.chosseImageColor1
+                        // &&widget.firstColor==Color(0xff325EDA)&&widget.secondColor==Color(0xffF6CA43)
+                        ? Colors.grey.withOpacity(0.3):null,
                   ),
                   childWhenDragging: SvgPicture.asset(
                     widget.chosseImageColor1,
@@ -172,7 +192,10 @@ class _ColorMixingSamplsState extends State<ColorMixingLevels2> {
                     widget.chosseImageColor2,
                     width: 100.w,
                     height: 93.25.h,
-                    color: isCorrectColorPlaced&&widget.firstColor==Color(0xff325EDA)&&widget.secondColor==Color(0xffE80D15)? Colors.grey.withOpacity(0.3) : null,
+                    color: isCorrectColorPlaced
+                    &&widget.imageColor==widget.chosseImageColor2
+                        // &&widget.firstColor==Color(0xff325EDA)&&widget.secondColor==Color(0xffE80D15)
+                        ? Colors.grey.withOpacity(0.3) : null,
                   ),
                   childWhenDragging: SvgPicture.asset(
                     widget.chosseImageColor2,
@@ -195,9 +218,10 @@ class _ColorMixingSamplsState extends State<ColorMixingLevels2> {
                     widget.chosseImageColor3,
                     width: 100.w,
                     height: 92.68.h,
-                    color: isCorrectColorPlaced&&
-                        widget.firstColor==Color(0xffEA0606)&&
-                        widget.secondColor==Color(0xffF6CA43)? Colors.grey.withOpacity(0.3) : null,
+                    color: isCorrectColorPlaced
+                    &&widget.imageColor==widget.chosseImageColor3
+                        // && widget.firstColor==Color(0xffEA0606)&&widget.secondColor==Color(0xffF6CA43)
+                        ? Colors.grey.withOpacity(0.3) : null,
                   ),
                   childWhenDragging: SvgPicture.asset(
                     widget.chosseImageColor3,
